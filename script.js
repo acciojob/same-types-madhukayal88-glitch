@@ -1,17 +1,21 @@
 function isSameType(value1, value2) {
-function isSameType(value1, value2) {
-  // Special case: both values are NaN
-  if (Number.isNaN(value1) && Number.isNaN(value2)) {
-    return true;
-  }
+  const isNaN1 = Number.isNaN(value1);
+  const isNaN2 = Number.isNaN(value2);
 
-  // Normal type check
-  return typeof value1 === typeof value2;
+  // If both are NaN → true
+  if (isNaN1 && isNaN2) return true;
+
+  // Only allow number or string types
+  const validTypes = ["number", "string"];
+
+  const type1 = typeof value1;
+  const type2 = typeof value2;
+
+  // If types differ → false
+  if (type1 !== type2) return false;
+
+  // If type is not number/string → false
+  if (!validTypes.includes(type1)) return false;
+
+  return true;
 }
-
-}
-
-// do not change the code below.
-let value1 = prompt("Enter Start of the Range.");
-let value2 = prompt("Enter End Of the Range.");
-alert(isSameType(value1, value2));
